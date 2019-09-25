@@ -1,5 +1,6 @@
 package sample;
 
+import Classes.Animal;
 import Classes.Gender;
 import Classes.Reservation;
 import javafx.event.ActionEvent;
@@ -75,5 +76,14 @@ public class Controller implements Initializable {
     }
 
 
+    public void OnActionAddReservor(ActionEvent actionEvent) {
 
+        Animal animal = (Animal) lvAnimals.getSelectionModel().getSelectedItem();
+
+        if(animal != null){
+            animal.reserve(tfReservorName.getText());
+            this.refreshControls();
+        }
+//        lbAnimals.textProperty().set(lvAnimals.getSelectionModel().getSelectedItems().toString());
+    }
 }
