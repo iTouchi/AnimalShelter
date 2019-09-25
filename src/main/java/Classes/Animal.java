@@ -24,11 +24,11 @@ public abstract class Animal {
 
     @Override
     public String toString(){
-        String reserved ="not reserved";
+        String reserved =" not reserved";
                 if (this.reservedBy != null){
-                    reserved = "reserved by" + this.reservedBy.getName();
+                    reserved = " reserved by " + this.reservedBy.getName();
                 }
-                return this.name + "," + this.gender + "," + reserved;
+                return this.name + ", " + this.gender + ", " + reserved;
     }
 
     //Getter

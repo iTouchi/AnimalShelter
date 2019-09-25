@@ -71,7 +71,6 @@ public class Controller implements Initializable {
 
     public void refreshControls(){
         lvAnimals.getItems().clear();
-//        reservation.getAnimals().forEach((n) -> lvAnimals.getItems().add(n));
         lvAnimals.getItems().addAll(reservation.getAnimals());
     }
 
@@ -84,6 +83,5 @@ public class Controller implements Initializable {
             animal.reserve(tfReservorName.getText());
             this.refreshControls();
         }
-//        lbAnimals.textProperty().set(lvAnimals.getSelectionModel().getSelectedItems().toString());
     }
 }
