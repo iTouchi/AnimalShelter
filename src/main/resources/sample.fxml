@@ -8,16 +8,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <ComboBox fx:id="cbSpecies" layoutX="32.0" layoutY="31.0" prefWidth="150.0" promptText="Species" />
+      <ComboBox fx:id="cbSpecies" layoutX="32.0" layoutY="31.0" prefWidth="150.0" promptText="Species" >
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="reihe" fx:value="Cat"/>
+               <String fx:id="parallel" fx:value="Dog"/>
+            </FXCollections>
+         </items>
+      </ComboBox>
       <TextField fx:id="tfName" layoutX="33.0" layoutY="83.0" promptText="Name" />
       <Label fx:id="lbGender" layoutX="33.0" layoutY="135.0" text="Gender" />
-      <RadioButton fx:id="rbMale" layoutX="28.0" layoutY="176.0" mnemonicParsing="false" text="Male" />
-      <RadioButton fx:id="rbFemale" layoutX="107.0" layoutY="176.0" mnemonicParsing="false" text="Female" />
+      <RadioButton fx:id="rbMale" layoutX="28.0" layoutY="176.0" mnemonicParsing="false" onAction="#OnActionRbMale" text="Male" />
+      <RadioButton fx:id="rbFemale" layoutX="107.0" layoutY="176.0" mnemonicParsing="false" onAction="#OnActionRbFemale" text="Female" />
       <TextField fx:id="tfBadHabits" layoutX="28.0" layoutY="215.0" promptText="Bad habits" />
-      <Button fx:id="btnAddAnimal" layoutX="26.0" layoutY="268.0" mnemonicParsing="false" text="Add animal" />
+      <Button fx:id="btnAddAnimal" layoutX="26.0" layoutY="268.0" mnemonicParsing="false" onAction="#OnClickAddAnimal" text="Add animal" />
       <Label fx:id="lbAnimals" layoutX="226.0" layoutY="23.0" text="Animals" />
       <ListView fx:id="lvAnimals" layoutX="226.0" layoutY="52.0" prefHeight="200.0" prefWidth="200.0" />
       <TextField fx:id="tfReservorName" layoutX="226.0" layoutY="281.0" promptText="Reservor name" />
