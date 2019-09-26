@@ -1,13 +1,12 @@
 package sample;
 
 import Classes.Animal;
+import Classes.AnimalFactory;
 import Classes.Gender;
-import Classes.Reservation;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import java.net.ResponseCache;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,7 +27,7 @@ public class Controller implements Initializable {
     public String name;
     public Gender gender;
     public String badHabits;
-    public Reservation reservation = new Reservation();
+    public AnimalFactory animalFactory = new AnimalFactory();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,9 +43,9 @@ public class Controller implements Initializable {
 
 
         if (species.equals("Cat")) {
-            reservation.newCat(name, gender, badHabits);
+            animalFactory.createCat(name, gender, badHabits);
         } else if (species.equals("Dog")) {
-            reservation.newDog(name, gender);
+            animalFactory.createDog(name, gender);
         }
 
         this.refreshControls();
@@ -71,7 +70,7 @@ public class Controller implements Initializable {
 
     public void refreshControls(){
         lvAnimals.getItems().clear();
-        lvAnimals.getItems().addAll(reservation.getAnimals());
+        lvAnimals.getItems().addAll(animalFactory.getAnimals());
     }
 
 

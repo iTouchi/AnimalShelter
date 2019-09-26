@@ -2,15 +2,14 @@ package Classes;
 
 import java.util.ArrayList;
 
-public class Reservation {
-
+public class AnimalFactory {
     public ArrayList<Animal> animals = new ArrayList<>();
 
-    public void newCat(String name,Gender gender, String badHabits){
+    public void createCat(String name,Gender gender, String badHabits){
         this.animals.add(new Cat(name,gender,badHabits));
     }
 
-    public void newDog(String name,Gender gender){
+    public void createDog(String name,Gender gender){
         this.animals.add(new Dog(name, gender));
     }
 
