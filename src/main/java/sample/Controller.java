@@ -23,11 +23,7 @@ public class Controller implements Initializable {
     public TextField tfReservorName;
     public Button btnReserveAnimal;
 
-    public String species;
-    public String name;
-    public Gender gender;
-    public String badHabits;
-    public AnimalFactory animalFactory = new AnimalFactory();
+    private AnimalFactory animalFactory = new AnimalFactory();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -35,28 +31,16 @@ public class Controller implements Initializable {
     }
 
     public void OnClickAddAnimal(ActionEvent actionEvent) {
-
-        species = cbSpecies.getSelectionModel().getSelectedItem().toString();
-        name = tfName.getText();
-        badHabits = tfBadHabits.getText();
-        gender = getGender();
-
-
-        if (species.equals("Cat")) {
-            animalFactory.createCat(name, gender, badHabits);
-        } else if (species.equals("Dog")) {
-            animalFactory.createDog(name, gender);
-        }
-
+        this.createAnimal();
         this.refreshControls();
-
     }
 
-    public Gender getGender() {
-        if (rbFemale.isSelected()) {
-            return Gender.FEMALE;
-        } else {
-            return Gender.MALE;
+    public void OnActionAddReservor(ActionEvent actionEvent) {
+        Animal animal = (Animal) lvAnimals.getSelectionModel().getSelectedItem();
+
+        if(animal != null){
+            animal.reserve(tfReservorName.getText());
+            this.refreshControls();
         }
     }
 
@@ -68,19 +52,30 @@ public class Controller implements Initializable {
         rbMale.setSelected(false);
     }
 
-    public void refreshControls(){
+    private void refreshControls(){
         lvAnimals.getItems().clear();
         lvAnimals.getItems().addAll(animalFactory.getAnimals());
     }
 
+    private void createAnimal(){
+        String species = cbSpecies.getSelectionModel().getSelectedItem().toString();
+        String name = tfName.getText();
+        String badHabits = tfBadHabits.getText();
+        Gender gender = getGender();
 
-    public void OnActionAddReservor(ActionEvent actionEvent) {
 
-        Animal animal = (Animal) lvAnimals.getSelectionModel().getSelectedItem();
+        if (species.equals("Cat")) {
+            animalFactory.createCat(name, gender, badHabits);
+        } else if (species.equals("Dog")) {
+            animalFactory.createDog(name, gender);
+        }
+    }
 
-        if(animal != null){
-            animal.reserve(tfReservorName.getText());
-            this.refreshControls();
+    private Gender getGender() {
+        if (rbFemale.isSelected()) {
+            return Gender.FEMALE;
+        } else {
+            return Gender.MALE;
         }
     }
 }
